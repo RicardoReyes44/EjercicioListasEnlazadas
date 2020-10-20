@@ -5,23 +5,25 @@ public class Nodo {
 	private Nodo siguiente;
 
 	public Nodo() {}
-	public Nodo(int numero, Nodo siguiente) {
-		super();
+	public Nodo(int numero) {
 		this.numero = numero;
-		this.siguiente = siguiente;
+		siguiente = null;
 	}
 
 	public int getNumero() {
 		return numero;
 	}
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
+
 	public Nodo getSiguiente() {
 		return siguiente;
 	}
+
 	public void setSiguiente(Nodo siguiente) {
 		this.siguiente = siguiente;
 	}
-	
+	@Override
+	public String toString() {
+		return "Nodo [numero=" + numero + "]";
+	}
+
 }
