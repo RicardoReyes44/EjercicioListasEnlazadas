@@ -70,11 +70,60 @@ public class ListaEnlazada {
 	}
 	
 	
+	//3a) Eliminar inicio
+	public Nodo eliminarInicio() {
+			
+		if(primero==null) {
+			return null;
+		}else {
+			Nodo eliminado = primero;
+			primeroApuntaA(primero.getSiguiente());
+			return eliminado;
+		}
+	}
+		
+		
+	//3b) Eliminar fin
+	public Nodo eliminarFin() {
+				
+		if(ultimo==null) {
+			return null;
+		}else {
+			Nodo anterior = null;
+			Nodo actual;
+					
+			for(actual=primero; actual.getSiguiente()!=null; actual=actual.getSiguiente())
+				anterior = actual;
+				
+				anterior.setSiguiente(null);
+					
+				return actual;
+			}
+		}
+
+
+	//4) Mostrar elementos
+	public void verLista() {
+		for(Nodo tmp=primero; tmp!=null; tmp=tmp.getSiguiente())
+			System.out.println(tmp);
+	}
+	
+	
 	//6) Vacia lista
 	public boolean vaciar() {
 		primeroApuntaA(null);
 		ultimoApuntaA(null);
 		return true;
+	}
+		
+
+	//7) Mostrar cantidad de elementos
+	public void mostrarCantidadDelementos() {
+		int cont=0;
+		for(Nodo tmp=primero; tmp.getSiguiente()!=null; tmp=tmp.getSiguiente())
+			cont++;
+			
+		System.out.println(cont);
 	}
 	
 	
