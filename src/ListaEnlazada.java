@@ -1,15 +1,4 @@
 
-/*
- * OPERACIONES BASICAS DE LAS LISTAS ENLAZADAS
- * 2) Agregar elemento
- *     2c) En un lugar especifico
- *     
- * 3) Eliminar elemento
- *     3c) En un lugar especifico
- * 
- * 5) Buscar elemento
- * */
-
 public class ListaEnlazada {
 
 	private Nodo primero;
@@ -64,9 +53,51 @@ public class ListaEnlazada {
 		numeroElementos++;
 		return true;
 	}
+	
+	
+	//2c) Agregar elemento en posicion especifica
+	public boolean agregarEnPosicion(int numero, int pos) {
+		
+		if(!(pos>=0 && pos<numeroElementos) && pos!=0) {
+			return false;
+		}else{
+			
+			nuevo = new Nodo(numero);
+			
+		    if(!verificarNoVacia()) {
+			    primeroApuntaA(nuevo);
+			    ultimoApuntaA(nuevo);
+		    }else {
+			
+			    if(pos==0) {
+				    agregarEntre(nuevo, primero);
+				    primeroApuntaA(nuevo);
+			    }else if(pos==numeroElementos-1) {
+				    agregarEntre(ultimo, nuevo);
+				    ultimoApuntaA(nuevo);
+			    }else {
+			    	
+				    int cont=0;
+				    Nodo anterior = null;
+
+				    for(Nodo tmp=primero; tmp!=null; tmp=tmp.getSiguiente()) {
+					    if(cont==pos) {
+						    anterior.setSiguiente(nuevo);
+						    nuevo.setSiguiente(tmp);
+						    break;
+					    }
+					    anterior=tmp; 
+					    cont++;
+				    }
+			    }
+		    }
+		    numeroElementos++;
+			return true;
+		}
+	}
 		
 			
-	public void agregarEntre(Nodo primero, Nodo segundo) {
+	private void agregarEntre(Nodo primero, Nodo segundo) {
 		primero.setSiguiente(segundo);
 	}
 	
@@ -99,9 +130,52 @@ public class ListaEnlazada {
 				anterior = actual;
 				
 				anterior.setSiguiente(null);
-					
+				ultimoApuntaA(anterior);
 				return actual;
 			}
+	}
+	
+	
+	//3) Eliminar elemento en posicion especifica
+	public Nodo eliminarEnPosicion(int pos) {
+		
+		if(!(pos>=0 && pos<numeroElementos)) {
+			return null;
+		}else {
+			
+			if(!verificarNoVacia()) {
+				return null;
+			}else {
+				Nodo tmp = primero;
+				
+				if(pos==0) {
+					primeroApuntaA(tmp.getSiguiente());
+				}else if(pos==numeroElementos-1) {
+					Nodo anterior = null;
+
+					while(tmp!=ultimo) {
+						anterior = tmp;
+						tmp = tmp.getSiguiente();
+					}
+					
+					anterior.setSiguiente(null);
+				}else {
+					Nodo anterior = null;
+					int cont=0;
+					
+					while(cont!=pos) {
+						anterior = tmp;
+						tmp = tmp.getSiguiente();
+						cont++;
+					}
+					
+					anterior.setSiguiente(tmp.getSiguiente());
+				}
+				
+				numeroElementos--;
+				return tmp;
+			}
+		}
 	}
 
 
@@ -110,6 +184,31 @@ public class ListaEnlazada {
 		if(verificarNoVacia()) {
 			for(Nodo tmp=primero; tmp!=null; tmp=tmp.getSiguiente())
 				System.out.println(tmp);
+		}else {
+			System.out.println("No hay elementos");
+		}
+	}
+	
+	
+	//5) Mostrar elementos
+	public void buscarElemento(int numero) {
+		if(verificarNoVacia()) {
+			Nodo tmp = primero;
+			boolean encontrado = false;
+			
+			while(tmp!=null) {
+				if(tmp.getNumero()==numero) {
+					encontrado = true;
+					break;
+				}
+				tmp = tmp.getSiguiente();
+			}
+			
+			if(encontrado) {
+				System.out.println("Encontrado!");
+			}else {
+				System.out.println("No se ha encontrado");
+			}
 		}else {
 			System.out.println("No hay elementos");
 		}
