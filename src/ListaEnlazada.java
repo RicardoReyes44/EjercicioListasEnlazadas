@@ -33,5 +33,30 @@ public class ListaEnlazada {
 	private void ultimoApuntaA(Nodo apuntar) {
 		ultimo = apuntar;
 	}
+	
+	
+	//6) Vacia lista
+	public boolean vaciar() {
+		primeroApuntaA(null);
+		ultimoApuntaA(null);
+		return true;
+	}
+	
+	
+	//8) Mostrar primero
+	public void mostrarPrimero() {
+		System.out.println(primero);
+	}
 
+
+	//9) Mostrar ultimo
+	public void mostrarUltimo() {
+		System.out.println(ultimo);
+	}
+		
+		
+	//10) Verificar NO vacia(que tenga elementos)
+	private boolean verificarNoVacia() {
+		return primero!=null;
+	}
 }
