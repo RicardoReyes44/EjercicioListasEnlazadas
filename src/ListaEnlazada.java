@@ -18,6 +18,7 @@ public class ListaEnlazada {
 	private Nodo primero;
 	private Nodo ultimo;
 	private Nodo nuevo;
+	private int numeroElementos = 0;
 	
 	//1) Creacion
 	public ListaEnlazada() {
@@ -32,6 +33,40 @@ public class ListaEnlazada {
 	
 	private void ultimoApuntaA(Nodo apuntar) {
 		ultimo = apuntar;
+	}
+	
+	//2a) Agregar elemento inicio
+	public boolean agregarInicio(int numero) {
+		nuevo = new Nodo(numero);
+			
+		if(primero==null) {
+			primeroApuntaA(nuevo);
+			ultimoApuntaA(nuevo);
+		}else {
+			agregarEntre(nuevo, primero);
+			primeroApuntaA(nuevo);
+		}
+		return true;
+	}
+		
+		
+	//2b) Agregar elementofin
+	public boolean agregarFin(int numero) {
+		nuevo = new Nodo(numero);
+				
+		if(primero==null) {
+			primeroApuntaA(nuevo);
+			ultimoApuntaA(nuevo);
+		}else {
+			agregarEntre(ultimo, nuevo);
+			ultimoApuntaA(nuevo);
+		}
+		return true;
+	}
+		
+			
+	public void agregarEntre(Nodo primero, Nodo segundo) {
+		primero.setSiguiente(segundo);
 	}
 	
 	
