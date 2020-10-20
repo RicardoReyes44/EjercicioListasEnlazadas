@@ -8,9 +8,6 @@
  *     3c) En un lugar especifico
  * 
  * 5) Buscar elemento
- * 7) Mostrar cantidad de elementos
- * 8) Mostrar primero
- * 9) Mostrar ultimo
  * */
 
 public class ListaEnlazada {
@@ -46,6 +43,8 @@ public class ListaEnlazada {
 			agregarEntre(nuevo, primero);
 			primeroApuntaA(nuevo);
 		}
+		
+		numeroElementos++;
 		return true;
 	}
 		
@@ -61,6 +60,8 @@ public class ListaEnlazada {
 			agregarEntre(ultimo, nuevo);
 			ultimoApuntaA(nuevo);
 		}
+		
+		numeroElementos++;
 		return true;
 	}
 		
@@ -72,7 +73,8 @@ public class ListaEnlazada {
 	
 	//3a) Eliminar inicio
 	public Nodo eliminarInicio() {
-			
+		
+		numeroElementos--;
 		if(primero==null) {
 			return null;
 		}else {
@@ -85,7 +87,8 @@ public class ListaEnlazada {
 		
 	//3b) Eliminar fin
 	public Nodo eliminarFin() {
-				
+		
+		numeroElementos--;
 		if(ultimo==null) {
 			return null;
 		}else {
@@ -99,13 +102,17 @@ public class ListaEnlazada {
 					
 				return actual;
 			}
-		}
+	}
 
 
 	//4) Mostrar elementos
 	public void verLista() {
-		for(Nodo tmp=primero; tmp!=null; tmp=tmp.getSiguiente())
-			System.out.println(tmp);
+		if(verificarNoVacia()) {
+			for(Nodo tmp=primero; tmp!=null; tmp=tmp.getSiguiente())
+				System.out.println(tmp);
+		}else {
+			System.out.println("No hay elementos");
+		}
 	}
 	
 	
@@ -118,24 +125,32 @@ public class ListaEnlazada {
 		
 
 	//7) Mostrar cantidad de elementos
-	public void mostrarCantidadDelementos() {
-		int cont=0;
-		for(Nodo tmp=primero; tmp.getSiguiente()!=null; tmp=tmp.getSiguiente())
-			cont++;
-			
-		System.out.println(cont);
+	public void mostrarCantidadDeElementos() {
+		if(verificarNoVacia()) {
+			System.out.println(numeroElementos);
+		}else {
+			System.out.println("No hay elementos");
+		}
 	}
 	
 	
 	//8) Mostrar primero
 	public void mostrarPrimero() {
-		System.out.println(primero);
+		if(verificarNoVacia()) {
+			System.out.println(primero);
+		}else {
+			System.out.println("No hay elementos");
+		}
 	}
 
 
 	//9) Mostrar ultimo
 	public void mostrarUltimo() {
-		System.out.println(ultimo);
+		if(verificarNoVacia()) {
+			System.out.println(ultimo);
+		}else {
+			System.out.println("No hay elementos");
+		}
 	}
 		
 		
