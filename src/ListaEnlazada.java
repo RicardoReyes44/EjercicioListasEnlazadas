@@ -159,6 +159,7 @@ public class ListaEnlazada {
 					}
 					
 					anterior.setSiguiente(null);
+					ultimoApuntaA(anterior);
 				}else {
 					Nodo anterior = null;
 					int cont=0;

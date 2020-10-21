@@ -14,10 +14,9 @@ public class PruebaListaEnlazada {
 		System.out.println(le.agregarInicio(7));
 		System.out.println(le.agregarInicio(8));
 		System.out.println(le.agregarInicio(9));
-		
-		
-		System.out.println(le.agregarEnPosicion(12, 7));
-		
+
+		System.out.println(le.agregarEnPosicion(12, 9));
+
 		le.buscarElemento(-1);
 		le.buscarElemento(9);
 		le.buscarElemento(11);
