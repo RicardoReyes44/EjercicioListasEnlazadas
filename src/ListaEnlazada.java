@@ -58,10 +58,10 @@ public class ListaEnlazada {
 	//2c) Agregar elemento en posicion especifica
 	public boolean agregarEnPosicion(int numero, int pos) {
 		
-		if(!(pos>=0 && pos<numeroElementos) && pos!=0) {
+		if(!(pos>=0 && pos<=numeroElementos) && pos!=0) {
 			return false;
 		}else{
-			
+
 			nuevo = new Nodo(numero);
 			
 		    if(!verificarNoVacia()) {
@@ -72,7 +72,7 @@ public class ListaEnlazada {
 			    if(pos==0) {
 				    agregarEntre(nuevo, primero);
 				    primeroApuntaA(nuevo);
-			    }else if(pos==numeroElementos-1) {
+			    }else if(pos==numeroElementos) {
 				    agregarEntre(ultimo, nuevo);
 				    ultimoApuntaA(nuevo);
 			    }else {
