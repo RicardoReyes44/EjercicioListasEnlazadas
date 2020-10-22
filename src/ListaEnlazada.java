@@ -10,6 +10,11 @@ public class ListaEnlazada {
 	public ListaEnlazada() {
 		primero = ultimo = null;
 	}
+	
+	
+	public int getNumeroElementos() {
+		return numeroElementos;
+	}
 
 	
 	private void primeroApuntaA(Nodo apuntar) {
@@ -105,10 +110,10 @@ public class ListaEnlazada {
 	//3a) Eliminar inicio
 	public Nodo eliminarInicio() {
 		
-		numeroElementos--;
-		if(primero==null) {
+		if(!verificarNoVacia()) {
 			return null;
 		}else {
+			numeroElementos--;
 			Nodo eliminado = primero;
 			primeroApuntaA(primero.getSiguiente());
 			return eliminado;
@@ -119,10 +124,8 @@ public class ListaEnlazada {
 	//3b) Eliminar fin
 	public Nodo eliminarFin() {
 		
-		numeroElementos--;
-		if(ultimo==null) {
-			return null;
-		}else {
+		if(verificarNoVacia()) {
+		    numeroElementos--;
 			Nodo anterior = null;
 			Nodo actual;
 					
@@ -132,20 +135,18 @@ public class ListaEnlazada {
 				anterior.setSiguiente(null);
 				ultimoApuntaA(anterior);
 				return actual;
-			}
+		}else {
+			return null;
+		}
 	}
 	
 	
 	//3) Eliminar elemento en posicion especifica
 	public Nodo eliminarEnPosicion(int pos) {
 		
-		if(!(pos>=0 && pos<numeroElementos)) {
+		if(!(pos>=0 && pos<numeroElementos) || !verificarNoVacia()) {
 			return null;
 		}else {
-			
-			if(!verificarNoVacia()) {
-				return null;
-			}else {
 				Nodo tmp = primero;
 				
 				if(pos==0) {
@@ -175,7 +176,6 @@ public class ListaEnlazada {
 				
 				numeroElementos--;
 				return tmp;
-			}
 		}
 	}
 
@@ -184,7 +184,7 @@ public class ListaEnlazada {
 	public void verLista() {
 		if(verificarNoVacia()) {
 			for(Nodo tmp=primero; tmp!=null; tmp=tmp.getSiguiente())
-				System.out.println(tmp);
+				System.out.print(tmp + "--> ");
 		}else {
 			System.out.println("No hay elementos");
 		}
@@ -220,6 +220,7 @@ public class ListaEnlazada {
 	public boolean vaciar() {
 		primeroApuntaA(null);
 		ultimoApuntaA(null);
+		numeroElementos = 0;
 		return true;
 	}
 		
