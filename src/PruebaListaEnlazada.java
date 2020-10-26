@@ -56,13 +56,17 @@ public class PruebaListaEnlazada {
     }
 	
 	
-	public static byte ingresarSubOpcion() {
+	public static byte ingresarSubOpcion(int el) {
 
 		while(true) {
 			System.out.println("-----------------Sub opciones------------------");
 			System.out.println("1) Inicio");
 			System.out.println("2) Final");
-			System.out.println("3) En una posicion");
+			if(el==0) {
+				System.out.println("3) En una posicion");
+			}else {
+				System.out.println("3) Elemento especifico");
+			}
 			System.out.print("Introduce una opcion: ");
 			
 			byte opcion = entrada.nextByte();
@@ -118,7 +122,7 @@ public class PruebaListaEnlazada {
 
 				case 1:
 					
-					subOpcion = ingresarSubOpcion();
+					subOpcion = ingresarSubOpcion(0);
 					
 					if(subOpcion==1) {
 						System.out.println(le.agregarInicio(ingresarDato()));
@@ -130,7 +134,7 @@ public class PruebaListaEnlazada {
 					break;
 
 				case 2:
-					subOpcion = ingresarSubOpcion();
+					subOpcion = ingresarSubOpcion(1);
 
 					if(subOpcion==1) {
 						System.out.println(le.eliminarInicio());
@@ -138,7 +142,7 @@ public class PruebaListaEnlazada {
 						System.out.println(le.eliminarFin());
 					}else {
 						if(le.getNumeroElementos()!=0) {
-							System.out.println(le.eliminarEnPosicion(ingresarPosicionEliminar((byte)le.getNumeroElementos())));
+							System.out.println(le.eliminarElementoEspecifico(ingresarDato()));
 						}else {
 							System.out.println("No hay elementos");
 						}

@@ -140,9 +140,41 @@ public class ListaEnlazada {
 		}
 	}
 	
+	//3) Eliminar elemento especifico
+	public Nodo eliminarElementoEspecifico(int numero) {
+		
+		if(verificarNoVacia()) {
+			Nodo eliminado;
+			
+			if(numero==primero.getNumero()) {
+				eliminado = primero;
+				primeroApuntaA(primero.getSiguiente());
+				numeroElementos--;
+				return eliminado;
+			}else {
+				
+				Nodo anterior = null;
+				Nodo siguiente = primero;
+				
+				while(siguiente!=null) {
+					if(numero==siguiente.getNumero()) {
+						numeroElementos--;
+						eliminado = siguiente;
+						anterior.setSiguiente(siguiente.getSiguiente());
+						return eliminado;
+					}
+					anterior = siguiente;
+					siguiente = siguiente.getSiguiente();
+				}
+				return null;
+			}
+		}else {
+			return null;
+		}
+	}
 	
 	//3) Eliminar elemento en posicion especifica
-	public Nodo eliminarEnPosicion(int pos) {
+	/*public Nodo eliminarEnPosicion(int pos) {
 		
 		if(!(pos>=0 && pos<numeroElementos) || !verificarNoVacia()) {
 			return null;
@@ -177,7 +209,7 @@ public class ListaEnlazada {
 				numeroElementos--;
 				return tmp;
 		}
-	}
+	}*/
 
 
 	//4) Mostrar elementos
